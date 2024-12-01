@@ -9,6 +9,9 @@ router = APIRouter()
 
 @router.post("/login")
 def admin_login(payload: AdminLogin):
+    # NOTE: If we have to get the auth of all user not just the admin user, then
+    # we can have additional organization data in the payload which can then be
+    # used to get the hash and salt from the correct database.
     org = get_organization_by_email(payload.email)
     if not org:
         logger.info(f"Invalid user: {payload.email}")

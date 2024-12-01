@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "c3fc3547-617e-405f-bd95-0005bd8dadc0",
+		"name": "Org management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17291157"
+	},
+	"item": [
+		{
+			"name": "/org/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@myorg.com\",\n  \"password\": \"securepassword\",\n  \"organization_name\": \"MyOrganization\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/org/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"org",
+						"create"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8000/org/create\" \\\n-H \"Content-Type: application/json\" \\\n-d '{\n  \"email\": \"admin@example.com\",\n  \"password\": \"securepassword\",\n  \"organization_name\": \"MyOrganization\"\n}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@myorg.com\",\n  \"password\": \"securepassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"login"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8000/admin/login\" \\\n-H \"Content-Type: application/json\" \\\n-d '{\n  \"email\": \"admin@example.com\",\n  \"password\": \"securepassword\"\n}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/org/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/org/get/?organization_name=MyOrganization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"org",
+						"get",
+						""
+					],
+					"query": [
+						{
+							"key": "organization_name",
+							"value": "MyOrganization"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8000/org/get\" \\\n-H \"Content-Type: application/json\" \\\n-d '{\n  \"organization_name\": \"MyOrganization\"\n}'\n"
+			},
+			"response": []
+		}
+	]
+}

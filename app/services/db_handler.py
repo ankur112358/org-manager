@@ -35,7 +35,8 @@ def create_organization(payload):
 
             org_db_engine = create_engine(dynamic_db_url)
             with org_db_engine.connect() as connection:
-                # Create the organization tables here
+                # NOTE: If any boiler plate tables like user have to be create
+                # for the org then, it can be created here
                 pass
             new_org = MasterDatabase(
                 organization_name=payload.organization_name,
