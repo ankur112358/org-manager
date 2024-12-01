@@ -5,9 +5,6 @@ class OrganizationCreate(BaseModel):
     password: str
     organization_name: str
 
-class OrganizationRetrieve(BaseModel):
-    organization_name: str
-
 class OrganizationResponse(BaseModel):
     id: int
     organization_name: str
