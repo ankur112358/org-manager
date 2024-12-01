@@ -11,10 +11,13 @@ Base.metadata.create_all(bind=engine)
 def create_organization(payload):
     session = SessionLocal()
     try:
-        # Example logic for dynamic DB creation
-        dynamic_db_url = f"sqlite:///./{payload.organization_name}.db"
+        dynamic_db_url = f"sqlite:///./database/{payload.organization_name}.db"
         hashed_password = hashlib.sha256(payload.password.encode()).hexdigest()
 
+        org_db_engine = create_engine(dynamic_db_url)
+        with org_db_engine.connect() as connection:
+            # Create the organization tables here
+            pass
         session.add(MasterDatabase(
             organization_name=payload.organization_name,
             admin_email=payload.email,
