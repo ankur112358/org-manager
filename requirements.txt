@@ -1,6 +1,7 @@
 fastapi
-uvicorn
-sqlalchemy
+httpx
 pyargon2
 pydantic
 PyJWT
+sqlalchemy
+uvicorn

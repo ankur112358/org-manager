@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  # Fast API Service
+  org-manager:
+    build: .
+    volumes:
+      - ./database:/app/database
+    ports:
+      - "8000:8000"
+
+  # Service for running tests
+  tests:
+    build: .
+    entrypoint: ["python", "-m", "unittest", "discover", "-s", "app/tests"]
+    environment:
+      - PYTHONPATH=.

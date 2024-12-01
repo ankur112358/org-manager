@@ -1,8 +1,9 @@
 import os
 import unittest
 import tempfile
-from unittest.mock import patch
 from fastapi.testclient import TestClient
+
+os.environ["LOGLEVEL"] = "ERROR"
 
 from app.main import app
 from app.services.db_handler import reset_db
