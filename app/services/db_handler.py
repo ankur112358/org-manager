@@ -10,6 +10,8 @@ from app.utils.auth_utils import get_salt, get_hashed_password
 logger = logging.getLogger("org_manager")
 DATABASE_DIR = os.getenv("DATABASE_DIR", "./database")
 DATABASE_URL = f"sqlite:///{DATABASE_DIR}/master.db"
+os.makedirs(DATABASE_DIR, exist_ok=True)
+
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
