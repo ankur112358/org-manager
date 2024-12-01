@@ -9,3 +9,5 @@ class MasterDatabase(Base):
     organization_name = Column(String, unique=True, index=True)
     admin_email = Column(String, unique=True)
     dynamic_db_url = Column(String)
+    salt = Column(String)
+    hashed_password = Column(String)

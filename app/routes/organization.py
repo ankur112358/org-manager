@@ -1,5 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from app.schemas.organization import OrganizationCreate, OrganizationRetrieve
+from app.schemas.organization import (
+    OrganizationCreate,
+    OrganizationRetrieve,
+    OrganizationResponse,
+)
 from app.services.db_handler import create_organization, get_organization_by_name
 
 router = APIRouter()
@@ -11,9 +15,10 @@ def create_org(payload: OrganizationCreate):
         raise HTTPException(status_code=400, detail="Organization creation failed")
     return {"message": "Organization created successfully"}
 
-@router.get("/get")
+@router.get("/get", response_model=OrganizationResponse)
 def get_org(payload: OrganizationRetrieve):
     org = get_organization_by_name(payload.organization_name)
     if not org:
         raise HTTPException(status_code=404, detail="Organization not found")
-    return org
+    # TODO: remove the salt and the hashed passwords
+    return OrganizationResponse(**org.__dict__)
