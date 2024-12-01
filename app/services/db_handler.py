@@ -1,10 +1,13 @@
 import os
+import logging
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine
 from app.models.master import MasterDatabase, Base
 from app.utils.auth_utils import get_salt, get_hashed_password
 
 
+logger = logging.getLogger("org_manager")
 DATABASE_DIR = os.getenv("DATABASE_DIR", "./database")
 DATABASE_URL = f"sqlite:///{DATABASE_DIR}/master.db"
 engine = create_engine(DATABASE_URL)
@@ -44,8 +47,8 @@ def create_organization(payload):
             session.add(new_org)
             session.commit()
             return new_org.id
-        except Exception as e:
-            print(e)
+        except SQLAlchemyError as e:
+            logger.warning(repr(e))
             session.rollback()
             return False
 

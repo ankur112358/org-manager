@@ -16,5 +16,4 @@ def get_org(organization_name: str):
     org = get_organization_by_name(organization_name)
     if not org:
         raise HTTPException(status_code=404, detail="Organization not found")
-    # TODO: remove the salt and the hashed passwords
     return OrganizationResponse(**org.__dict__)
